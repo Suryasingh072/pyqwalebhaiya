@@ -11,7 +11,7 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
 body{background:#f4f7ff;color:#222;overflow-x:hidden}
 
-/* ===== Animated Blobs ===== */
+/* ===== Animated Background Blobs ===== */
 .blobs{position:fixed;inset:0;z-index:-1;overflow:hidden}
 .blob{
   position:absolute;width:420px;height:420px;border-radius:50%;
@@ -60,12 +60,25 @@ nav a:hover{background:rgba(255,255,255,.28)}
 
 /* ===== Hero ===== */
 .hero{
-  text-align:center;padding:90px 20px;
+  padding:90px 20px;
   background:linear-gradient(135deg,#0b3c91,#1e88e5);
   color:#fff
 }
-.hero h2{font-size:34px;font-weight:700;margin-bottom:10px}
-.hero p{font-size:16px;opacity:.95}
+.hero-flex{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:40px;
+}
+.hero-text h2{font-size:36px;font-weight:700;margin-bottom:12px}
+.hero-text p{font-size:16px;opacity:.95;max-width:520px}
+.hero-img img{
+  width:200px;
+  max-width:45vw;
+  filter:drop-shadow(0 15px 30px rgba(0,0,0,.35));
+}
 
 /* ===== Sections ===== */
 .section{padding:60px 20px;max-width:1050px;margin:auto}
@@ -122,12 +135,22 @@ footer{
 @media(max-width:768px){
   nav{display:none}
   .hamburger{display:block}
+  .hero-flex{
+    flex-direction:column-reverse;
+    text-align:center;
+  }
+  .hero-img img{
+    width:150px;
+    margin-bottom:20px;
+  }
+  .hero-text h2{font-size:26px}
 }
 </style>
 </head>
 
 <body>
 
+<!-- Animated blobs -->
 <div class="blobs">
   <div class="blob b1"></div>
   <div class="blob b2"></div>
@@ -152,17 +175,26 @@ footer{
   </div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
-  <h2>AKTU BTech PYQs</h2>
-  <p>Browse question papers like folders • Free • Mobile-friendly</p>
+  <div class="hero-flex">
+    <div class="hero-text">
+      <h2>AKTU BTech PYQs</h2>
+      <p>Browse question papers like folders • Free • Mobile-friendly</p>
+    </div>
+    <div class="hero-img">
+      <img src="logo.png" alt="AKTU Logo">
+    </div>
+  </div>
 </section>
 
-<!-- PYQ AUTO GENERATED -->
+<!-- PYQ SECTION -->
 <section id="pyq" class="section">
   <h3>🗂️ Browse PYQs</h3>
   <div id="pyqContainer" class="folders"></div>
 </section>
 
+<!-- REVIEWS -->
 <section id="reviews" class="section">
   <h3>⭐ Students Reviews</h3>
   <div class="reviews">
@@ -184,6 +216,7 @@ footer{
   </div>
 </section>
 
+<!-- ABOUT -->
 <section id="about" class="section">
   <h3>About PYQWaleBhaiya</h3>
   <p class="about">
@@ -196,7 +229,7 @@ footer{
 <footer>© 2026 PYQWaleBhaiya • Educational Purpose Only</footer>
 
 <script>
-/* ===== PYQ DATA ===== */
+/* ===== PYQ DATA (EDIT ONLY THIS PART) ===== */
 const pyqData = {
   "1st Year": {
     "Semester 1": [
