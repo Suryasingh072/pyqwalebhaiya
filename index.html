@@ -58,26 +58,36 @@ nav a:hover{background:rgba(255,255,255,.28)}
 }
 .mobile-nav a:last-child{border-bottom:none}
 
-/* ===== Hero ===== */
+/* ===== HERO ===== */
 .hero{
-  padding:90px 20px;
+  padding:100px 20px;
   background:linear-gradient(135deg,#0b3c91,#1e88e5);
   color:#fff
 }
 .hero-flex{
-  max-width:1100px;
+  max-width:1150px;
   margin:auto;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:40px;
 }
-.hero-text h2{font-size:36px;font-weight:700;margin-bottom:12px}
-.hero-text p{font-size:16px;opacity:.95;max-width:520px}
+.hero-text h2{
+  font-size:38px;
+  font-weight:700;
+  margin-bottom:14px
+}
+.hero-text p{
+  font-size:16px;
+  opacity:.95;
+  max-width:520px
+}
+
+/* 🔥 LOGO SIZE INCREASED HERE */
 .hero-img img{
-  width:200px;
-  max-width:45vw;
-  filter:drop-shadow(0 15px 30px rgba(0,0,0,.35));
+  width:300px;              /* DESKTOP LOGO SIZE */
+  max-width:60vw;
+  filter:drop-shadow(0 20px 40px rgba(0,0,0,.45));
 }
 
 /* ===== Sections ===== */
@@ -97,7 +107,6 @@ nav a:hover{background:rgba(255,255,255,.28)}
   font-size:20px;font-weight:600;color:#fff;
   background:linear-gradient(135deg,#0b3c91,#1e88e5)
 }
-
 .subfolders,.files{
   overflow:hidden;max-height:0;
   transition:max-height .45s ease;margin-left:22px
@@ -140,8 +149,8 @@ footer{
     text-align:center;
   }
   .hero-img img{
-    width:150px;
-    margin-bottom:20px;
+    width:220px;        /* 🔥 MOBILE LOGO SIZE */
+    margin-bottom:25px;
   }
   .hero-text h2{font-size:26px}
 }
@@ -150,7 +159,6 @@ footer{
 
 <body>
 
-<!-- Animated blobs -->
 <div class="blobs">
   <div class="blob b1"></div>
   <div class="blob b2"></div>
@@ -188,7 +196,7 @@ footer{
   </div>
 </section>
 
-<!-- PYQ SECTION -->
+<!-- PYQ -->
 <section id="pyq" class="section">
   <h3>🗂️ Browse PYQs</h3>
   <div id="pyqContainer" class="folders"></div>
@@ -243,8 +251,8 @@ const pyqData = {
   "4th Year": {}
 };
 
-const container = document.getElementById("pyqContainer");
-let uid = 0;
+const container=document.getElementById("pyqContainer");
+let uid=0;
 
 function toggle(id){
   const el=document.getElementById(id);
@@ -256,14 +264,14 @@ function toggle(id){
 
 for(const year in pyqData){
   uid++; const yid="y"+uid;
-  container.innerHTML += `
+  container.innerHTML+=`
     <div class="folder big" onclick="toggle('${yid}')">📁 ${year}</div>
     <div id="${yid}" class="subfolders"></div>`;
   const ydiv=document.getElementById(yid);
 
   for(const sem in pyqData[year]){
     uid++; const sid="s"+uid;
-    ydiv.innerHTML += `
+    ydiv.innerHTML+=`
       <div class="folder" onclick="toggle('${sid}')">📂 ${sem}</div>
       <div id="${sid}" class="files"></div>`;
     const sdiv=document.getElementById(sid);
