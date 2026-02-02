@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PYQWaleBhaiya | AKTU BTech PYQs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+    body{background:#f4f7ff;color:#222;overflow-x:hidden}
+
+    /* ===== Animated Background Blobs ===== */
+    .blobs{position:fixed;inset:0;z-index:-1;overflow:hidden}
+    .blob{
+      position:absolute;width:420px;height:420px;border-radius:50%;
+      background:radial-gradient(circle at 30% 30%, #64b5f6, #1e88e5);
+      filter:blur(40px);opacity:.45;animation:float 18s infinite linear
+    }
+    .blob.b1{top:-80px;left:-80px}
+    .blob.b2{bottom:-120px;right:-120px;animation-duration:22s}
+    .blob.b3{top:40%;left:60%;width:300px;height:300px;animation-duration:20s}
+    @keyframes float{
+      0%{transform:translate(0,0)}
+      50%{transform:translate(40px,-30px)}
+      100%{transform:translate(0,0)}
+    }
+
+    /* ===== Header ===== */
+    header{
+      background:linear-gradient(135deg,#0b3c91,#1e88e5);
+      color:#fff;padding:14px 22px;
+      position:sticky;top:0;z-index:100;
+      display:flex;justify-content:space-between;align-items:center
+    }
+    header h1{font-size:22px;font-weight:700}
+    nav{display:flex;gap:12px}
+    nav a{
+      color:#fff;text-decoration:none;font-size:15px;font-weight:500;
+      padding:8px 16px;border-radius:999px;
+      background:rgba(255,255,255,.15);
+      transition:.25s
+    }
+    nav a:hover{background:rgba(255,255,255,.28)}
+
+    /* ===== Hero ===== */
+    .hero{
+      text-align:center;padding:90px 20px;
+      background:linear-gradient(135deg,#0b3c91,#1e88e5);
+      color:#fff
+    }
+    .hero h2{font-size:34px;font-weight:700;margin-bottom:10px}
+    .hero p{font-size:16px;opacity:.95}
+
+    /* ===== Section ===== */
+    .section{padding:60px 20px;max-width:1050px;margin:auto}
+    .section h3{text-align:center;font-size:24px;margin-bottom:35px;color:#0b3c91}
+
+    /* ===== Folder UI ===== */
+    .folders{max-width:900px;margin:auto}
+
+    .folder{
+      background:#fff;
+      padding:20px 24px;
+      margin:14px 0;
+      border-radius:16px;
+      font-size:16px;
+      cursor:pointer;
+      box-shadow:0 12px 30px rgba(0,0,0,.08);
+      transition:.25s;
+      user-select:none
+    }
+    .folder:hover{transform:translateY(-4px)}
+
+    .folder.big{
+      font-size:20px;
+      font-weight:600;
+      color:#fff;
+      background:linear-gradient(135deg,#0b3c91,#1e88e5);
+    }
+
+    .subfolders,
+    .files{
+      overflow:hidden;
+      max-height:0;
+      transition:max-height .45s ease;
+      margin-left:22px
+    }
+
+    .files a{
+      display:block;
+      margin:10px 0;
+      text-decoration:none;
+      color:#0b3c91;
+      font-size:15px;
+      padding-left:10px
+    }
+
+    /* ===== Reviews ===== */
+    .reviews{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:25px
+    }
+    .review-card{
+      background:#fff;
+      padding:26px;
+      border-radius:18px;
+      box-shadow:0 12px 30px rgba(0,0,0,.08);
+      transition:.25s
+    }
+    .review-card:hover{transform:translateY(-6px)}
+    .review-card h4{font-size:16px;color:#0b3c91;margin-bottom:6px}
+    .stars{color:#ffb400;font-size:15px;margin-bottom:10px}
+    .review-card p{font-size:14px;color:#555;line-height:1.6}
+
+    /* ===== About & Footer ===== */
+    .about{
+      text-align:center;max-width:760px;margin:auto;
+      font-size:15px;line-height:1.8;color:#444
+    }
+    footer{
+      background:linear-gradient(135deg,#0b3c91,#1e88e5);
+      color:#fff;text-align:center;padding:20px;
+      font-size:13px;margin-top:60px
+    }
+
+    /* ===== Mobile ===== */
+    @media(max-width:600px){
+      header h1{font-size:18px}
+      nav a{font-size:13px;padding:7px 12px}
+      .hero h2{font-size:24px}
+      .folder.big{font-size:18px}
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Background blobs -->
+<div class="blobs">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+</div>
+
+<header>
+  <h1>PYQWaleBhaiya</h1>
+  <nav>
+    <a href="#pyq">PYQs</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>AKTU BTech PYQs</h2>
+  <p>Browse question papers like folders • Fast • Free • Mobile-friendly</p>
+</section>
+
+<!-- PYQ SECTION -->
+<section id="pyq" class="section">
+  <h3>🗂️ Browse PYQs</h3>
+
+  <div class="folders">
+
+    <div class="folder big" onclick="toggle('y1')">📁 1st Year</div>
+    <div id="y1" class="subfolders">
+      <div class="folder" onclick="toggle('y1s1')">📂 Semester 1</div>
+      <div id="y1s1" class="files">
+        <a href="pdf/pyq/year1/sem1/maths1_2022.pdf" download>📄 Maths-I (2022)</a>
+        <a href="pdf/pyq/year1/sem1/physics_2022.pdf" download>📄 Physics (2022)</a>
+      </div>
+    </div>
+
+    <div class="folder big" onclick="toggle('y2')">📁 2nd Year</div>
+    <div id="y2" class="subfolders">
+      <p style="opacity:.6;margin:12px">Coming soon…</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="section">
+  <h3>⭐ Students Reviews</h3>
+
+  <div class="reviews">
+    <div class="review-card">
+      <h4>Aman Kumar (CSE)</h4>
+      <div class="stars">★★★★★</div>
+      <p>PYQWaleBhaiya ne exam preparation easy bana di. Folder system mast hai.</p>
+    </div>
+
+    <div class="review-card">
+      <h4>Shivani Singh (EE)</h4>
+      <div class="stars">★★★★★</div>
+      <p>Mobile pe bhi smooth chalta hai. PYQs milna sabse bada plus point.</p>
+    </div>
+
+    <div class="review-card">
+      <h4>Rohit Verma (ME)</h4>
+      <div class="stars">★★★★☆</div>
+      <p>Clean UI aur fast downloads. AKTU students ke liye best site.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <h3>About PYQWaleBhaiya</h3>
+  <p class="about">
+    PYQWaleBhaiya ek student-first platform hai jo AKTU BTech students ko  
+    previous year question papers ek clean, fast aur folder-style interface me provide karta hai.
+  </p>
+</section>
+
+<footer>
+  © 2026 PYQWaleBhaiya • Educational Purpose Only
+</footer>
+
+<script>
+  function toggle(id){
+    const el = document.getElementById(id);
+    if(!el) return;
+    if(el.style.maxHeight && el.style.maxHeight !== "0px"){
+      el.style.maxHeight = "0";
+    } else {
+      el.style.maxHeight = el.scrollHeight + "px";
+    }
+  }
+</script>
+
+</body>
+</html>
