@@ -237,60 +237,135 @@ footer{
 <footer>© 2026 PYQWaleBhaiya • Educational Purpose Only</footer>
 
 <script>
-/* ===== PYQ DATA (EDIT ONLY THIS PART) ===== */
-const pyqData = {
-  "1st Year": {
-    "Semester 1": [
-      {name:"Maths-I (2022)", file:"pdf/pyq/year1/sem1/maths1_2022.pdf"},
-      {name:"Physics (2022)", file:"pdf/pyq/year1/sem1/physics_2022.pdf"}
+
+/* ===== DATA ===== */
+const pyqData={
+ "1st Year":{
+    "Semester 1":[
+      {name:"Engineering Maths-I",file:"pdf/pyq/year1/sem1/maths1.pdf"},
+      {name:"Engineering Physics",file:"pdf/pyq/year1/sem1/physics.pdf"},
+      {name:"Basic Electrical",file:"pdf/pyq/year1/sem1/electrical.pdf"},
+      {name:"Engineering Chemistry",file:"pdf/pyq/year1/sem1/chemistry.pdf"}
     ],
-    "Semester 2": []
+    "Semester 2":[
+      {name:"Engineering Maths-II",file:"pdf/pyq/year1/sem2/maths2.pdf"},
+      {name:"Electronic Engineering",file:"pdf/pyq/year1/sem2/electronics.pdf"},
+      {name:"Programming in C",file:"pdf/pyq/year1/sem2/cprog.pdf"},
+      {name:"Environment Science",file:"pdf/pyq/year1/sem2/evs.pdf"}
+    ]
   },
-  "2nd Year": {},
-  "3rd Year": {},
-  "4th Year": {}
+  "2nd Year":{
+    "Semester 3":[
+      {name:"Data Structures",file:"pdf/pyq/year2/sem3/ds.pdf"},
+      {name:"Discrete Maths",file:"pdf/pyq/year2/sem3/dm.pdf"},
+      {name:"Digital Logic",file:"pdf/pyq/year2/sem3/dld.pdf"},
+      {name:"OOPs",file:"pdf/pyq/year2/sem3/oops.pdf"}
+    ],
+    "Semester 4":[
+      {name:"Operating System",file:"pdf/pyq/year2/sem4/os.pdf"},
+      {name:"Computer Organization",file:"pdf/pyq/year2/sem4/co.pdf"},
+      {name:"DBMS",file:"pdf/pyq/year2/sem4/dbms.pdf"},
+      {name:"Theory of Automata",file:"pdf/pyq/year2/sem4/toa.pdf"}
+    ]
+  },
+  "3rd Year":{
+    "Semester 5":[
+      {name:"Compiler Design",file:"pdf/pyq/year3/sem5/compiler.pdf"},
+      {name:"Software Engineering",file:"pdf/pyq/year3/sem5/se.pdf"},
+      {name:"Computer Networks",file:"pdf/pyq/year3/sem5/cn.pdf"},
+      {name:"Machine Learning",file:"pdf/pyq/year3/sem5/ml.pdf"}
+    ],
+    "Semester 6":[
+      {name:"Artificial Intelligence",file:"pdf/pyq/year3/sem6/ai.pdf"},
+      {name:"Cloud Computing",file:"pdf/pyq/year3/sem6/cloud.pdf"},
+      {name:"Big Data",file:"pdf/pyq/year3/sem6/bigdata.pdf"},
+      {name:"Cyber Security",file:"pdf/pyq/year3/sem6/cyber.pdf"}
+    ]
+  },
+  "4th Year":{
+    "Semester 7":[
+      {name:"Blockchain",file:"pdf/pyq/year4/sem7/blockchain.pdf"},
+      {name:"IoT",file:"pdf/pyq/year4/sem7/iot.pdf"},
+      {name:"Data Mining",file:"pdf/pyq/year4/sem7/dm.pdf"}
+    ],
+    "Semester 8":[
+      {name:"Project Viva",file:"pdf/pyq/year4/sem8/viva.pdf"},
+      {name:"Internship Report",file:"pdf/pyq/year4/sem8/internship.pdf"}
+    ]
+  }
 };
 
 const container=document.getElementById("pyqContainer");
 let uid=0;
 
-function toggle(id){
-  const el=document.getElementById(id);
-  el.style.maxHeight =
-    (el.style.maxHeight && el.style.maxHeight!=="0px")
-      ? "0"
-      : el.scrollHeight+"px";
+/* ===== ULTRA SMOOTH TOGGLE ===== */
+function toggle(id,el){
+
+const box=document.getElementById(id);
+const open=box.style.maxHeight && box.style.maxHeight!=="0px";
+
+/* close others (accordion feel) */
+document.querySelectorAll('.subfolders,.files').forEach(e=>{
+if(e!==box)e.style.maxHeight="0px";
+});
+
+document.querySelectorAll('.folder').forEach(f=>f.classList.remove('active'));
+
+if(open){
+box.style.maxHeight="0px";
+}else{
+box.style.maxHeight=box.scrollHeight+"px";
+el.classList.add('active');
+
+/* 🔥 AUTO SCROLL */
+setTimeout(()=>{
+el.scrollIntoView({behavior:"smooth",block:"center"});
+},200);
 }
 
+/* 🔥 UPDATE PARENTS HEIGHT */
+setTimeout(()=>{
+let parent=box.parentElement;
+while(parent){
+if(parent.classList && parent.classList.contains('subfolders')){
+parent.style.maxHeight=parent.scrollHeight+"px";
+}
+parent=parent.parentElement;
+}
+},350);
+}
+
+/* ===== BUILD UI ===== */
 for(const year in pyqData){
-  uid++; const yid="y"+uid;
-  container.innerHTML+=`
-    <div class="folder big" onclick="toggle('${yid}')">📁 ${year}</div>
-    <div id="${yid}" class="subfolders"></div>`;
-  const ydiv=document.getElementById(yid);
 
-  for(const sem in pyqData[year]){
-    uid++; const sid="s"+uid;
-    ydiv.innerHTML+=`
-      <div class="folder" onclick="toggle('${sid}')">📂 ${sem}</div>
-      <div id="${sid}" class="files"></div>`;
-    const sdiv=document.getElementById(sid);
-    const files=pyqData[year][sem];
+uid++;const yid="y"+uid;
 
-    if(files.length===0){
-      sdiv.innerHTML='<p style="opacity:.6;margin:10px">Coming soon…</p>';
-    }else{
-      files.forEach(f=>{
-        sdiv.innerHTML+=`<a href="${f.file}" download>📄 ${f.name}</a>`;
-      });
-    }
-  }
+container.innerHTML+=`
+<div class="folder big" onclick="toggle('${yid}',this)">
+<span class="icon">📁</span>${year}
+</div>
+<div id="${yid}" class="subfolders"></div>`;
+
+const ydiv=document.getElementById(yid);
+
+for(const sem in pyqData[year]){
+
+uid++;const sid="s"+uid;
+
+ydiv.innerHTML+=`
+<div class="folder" onclick="toggle('${sid}',this)">
+<span class="icon">📂</span>${sem}
+</div>
+<div id="${sid}" class="files"></div>`;
+
+const sdiv=document.getElementById(sid);
+
+pyqData[year][sem].forEach(f=>{
+sdiv.innerHTML+=`<a href="${f.file}">📄 ${f.name}</a>`;
+});
+}
 }
 
-function toggleMenu(){
-  const m=document.getElementById("mobileNav");
-  m.style.display = (m.style.display==="flex") ? "none" : "flex";
-}
 </script>
 
 </body>
