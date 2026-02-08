@@ -11,84 +11,72 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
 body{background:#f4f7ff;color:#222;overflow-x:hidden}
 
-/* ===== Animated Background Blobs ===== */
+/* ===== Animated Background ===== */
 .blobs{position:fixed;inset:0;z-index:-1;overflow:hidden}
-.blob{
-  position:absolute;width:420px;height:420px;border-radius:50%;
-  background:radial-gradient(circle at 30% 30%, #64b5f6, #1e88e5);
-  filter:blur(45px);opacity:.45;animation:float 18s infinite linear
-}
+.blob{position:absolute;width:420px;height:420px;border-radius:50%;
+background:radial-gradient(circle at 30% 30%, #64b5f6, #1e88e5);
+filter:blur(45px);opacity:.45;animation:float 18s infinite linear}
 .blob.b1{top:-80px;left:-80px}
 .blob.b2{bottom:-120px;right:-120px;animation-duration:22s}
 .blob.b3{top:40%;left:60%;width:300px;height:300px;animation-duration:20s}
-@keyframes float{
-  0%{transform:translate(0,0)}
-  50%{transform:translate(40px,-30px)}
-  100%{transform:translate(0,0)}
-}
+@keyframes float{0%{transform:translate(0,0)}50%{transform:translate(40px,-30px)}100%{transform:translate(0,0)}}
 
 /* ===== Header ===== */
 header{
-  background:linear-gradient(135deg,#0b3c91,#1e88e5);
-  color:#fff;padding:14px 22px;
-  position:sticky;top:0;z-index:100;
-  display:flex;justify-content:space-between;align-items:center
-}
+background:linear-gradient(135deg,#0b3c91,#1e88e5);
+color:#fff;padding:14px 22px;
+position:sticky;
+top:0;
+z-index:100;
+position:relative;   /* ⭐ FIX */
+display:flex;justify-content:space-between;align-items:center}
 header h1{font-size:22px;font-weight:700}
 
 nav{display:flex;gap:12px}
 nav a{
-  color:#fff;text-decoration:none;font-size:15px;font-weight:500;
-  padding:8px 16px;border-radius:999px;
-  background:rgba(255,255,255,.15);transition:.25s
-}
+color:#fff;text-decoration:none;font-size:15px;font-weight:500;
+padding:8px 16px;border-radius:999px;
+background:rgba(255,255,255,.15);transition:.25s}
 nav a:hover{background:rgba(255,255,255,.28)}
 
 .hamburger{display:none;font-size:26px;cursor:pointer}
+
+/* ⭐ FIXED MOBILE NAV */
 .mobile-nav{
-  display:none;flex-direction:column;
-  background:linear-gradient(135deg,#0b3c91,#1e88e5);
-  position:absolute;top:60px;right:20px;
-  border-radius:16px;overflow:hidden;
-  box-shadow:0 15px 40px rgba(0,0,0,.25)
+display:none;
+flex-direction:column;
+background:linear-gradient(135deg,#0b3c91,#1e88e5);
+position:absolute;
+top:60px;
+right:10px;
+width:200px;
+border-radius:16px;
+overflow:hidden;
+z-index:999;
+box-shadow:0 15px 40px rgba(0,0,0,.25)
 }
+
+.mobile-nav.show{
+display:flex;
+animation:slideDown .3s ease;
+}
+
+@keyframes slideDown{
+from{opacity:0;transform:translateY(-10px)}
+to{opacity:1;transform:translateY(0)}
+}
+
 .mobile-nav a{
-  padding:14px 22px;color:#fff;text-decoration:none;
-  border-bottom:1px solid rgba(255,255,255,.15)
-}
+padding:14px 22px;color:#fff;text-decoration:none;
+border-bottom:1px solid rgba(255,255,255,.15)}
 .mobile-nav a:last-child{border-bottom:none}
 
 /* ===== HERO ===== */
-.hero{
-  padding:100px 20px;
-  background:linear-gradient(135deg,#0b3c91,#1e88e5);
-  color:#fff
-}
-.hero-flex{
-  max-width:1150px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:40px;
-}
-.hero-text h2{
-  font-size:38px;
-  font-weight:700;
-  margin-bottom:14px
-}
-.hero-text p{
-  font-size:16px;
-  opacity:.95;
-  max-width:520px
-}
-
-/* 🔥 LOGO SIZE INCREASED HERE */
-.hero-img img{
-  width:300px;              /* DESKTOP LOGO SIZE */
-  max-width:60vw;
-  filter:drop-shadow(0 20px 40px rgba(0,0,0,.45));
-}
+.hero{padding:100px 20px;background:linear-gradient(135deg,#0b3c91,#1e88e5);color:#fff}
+.hero-flex{max-width:1150px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:40px}
+.hero-text h2{font-size:38px;font-weight:700;margin-bottom:14px}
+.hero-text p{font-size:16px;opacity:.95;max-width:520px}
+.hero-img img{width:300px;max-width:60vw;filter:drop-shadow(0 20px 40px rgba(0,0,0,.45));}
 
 /* ===== Sections ===== */
 .section{padding:60px 20px;max-width:1050px;margin:auto}
@@ -97,36 +85,25 @@ nav a:hover{background:rgba(255,255,255,.28)}
 /* ===== Folder UI ===== */
 .folders{max-width:900px;margin:auto}
 .folder{
-  background:#fff;padding:20px 24px;margin:14px 0;
-  border-radius:16px;font-size:16px;cursor:pointer;
-  box-shadow:0 12px 30px rgba(0,0,0,.08);
-  transition:.25s;user-select:none
-}
+background:#fff;padding:20px 24px;margin:14px 0;
+border-radius:16px;font-size:16px;cursor:pointer;
+box-shadow:0 12px 30px rgba(0,0,0,.08);
+transition:.25s;user-select:none}
 .folder:hover{transform:translateY(-4px)}
 .folder.big{
-  font-size:20px;font-weight:600;color:#fff;
-  background:linear-gradient(135deg,#0b3c91,#1e88e5)
-}
-.subfolders,.files{
-  overflow:hidden;max-height:0;
-  transition:max-height .45s ease;margin-left:22px
-}
-.files a{
-  display:block;margin:10px 0;text-decoration:none;
-  color:#0b3c91;font-size:15px;padding-left:10px
-}
+font-size:20px;font-weight:600;color:#fff;
+background:linear-gradient(135deg,#0b3c91,#1e88e5)}
+.subfolders{overflow:hidden;max-height:0;transition:max-height .45s ease;margin-left:22px}
 
 /* ===== Reviews ===== */
 .reviews{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:25px
-}
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px}
 .review-card{
-  background:#fff;padding:26px;border-radius:18px;
-  box-shadow:0 12px 30px rgba(0,0,0,.08);
-  transition:.25s
-}
+background:#fff;padding:26px;border-radius:18px;
+box-shadow:0 12px 30px rgba(0,0,0,.08);
+transition:.25s}
 .review-card:hover{transform:translateY(-6px)}
 .review-card h4{font-size:16px;color:#0b3c91;margin-bottom:6px}
 .stars{color:#ffb400;font-size:15px;margin-bottom:10px}
@@ -135,24 +112,17 @@ nav a:hover{background:rgba(255,255,255,.28)}
 /* ===== About & Footer ===== */
 .about{text-align:center;max-width:760px;margin:auto;font-size:15px;line-height:1.8;color:#444}
 footer{
-  background:linear-gradient(135deg,#0b3c91,#1e88e5);
-  color:#fff;text-align:center;padding:20px;
-  font-size:13px;margin-top:60px
-}
+background:linear-gradient(135deg,#0b3c91,#1e88e5);
+color:#fff;text-align:center;padding:20px;
+font-size:13px;margin-top:60px}
 
 /* ===== Mobile ===== */
 @media(max-width:768px){
-  nav{display:none}
-  .hamburger{display:block}
-  .hero-flex{
-    flex-direction:column-reverse;
-    text-align:center;
-  }
-  .hero-img img{
-    width:220px;        /* 🔥 MOBILE LOGO SIZE */
-    margin-bottom:25px;
-  }
-  .hero-text h2{font-size:26px}
+nav{display:none}
+.hamburger{display:block}
+.hero-flex{flex-direction:column-reverse;text-align:center}
+.hero-img img{width:220px;margin-bottom:25px}
+.hero-text h2{font-size:26px}
 }
 </style>
 </head>
@@ -160,210 +130,123 @@ footer{
 <body>
 
 <div class="blobs">
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
-  <div class="blob b3"></div>
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
 </div>
 
 <header>
-  <h1>PYQWaleBhaiya</h1>
+<h1>PYQWaleBhaiya</h1>
 
-  <nav>
-    <a href="#pyq">PYQs</a>
-    <a href="#reviews">Reviews</a>
-    <a href="#about">About</a>
-  </nav>
+<nav>
+<a href="#pyq">PYQs</a>
+<a href="#reviews">Reviews</a>
+<a href="#about">About</a>
+</nav>
 
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
+<div class="hamburger" onclick="toggleMenu()">☰</div>
 
-  <div id="mobileNav" class="mobile-nav">
-    <a href="#pyq" onclick="toggleMenu()">PYQs</a>
-    <a href="#reviews" onclick="toggleMenu()">Reviews</a>
-    <a href="#about" onclick="toggleMenu()">About</a>
-  </div>
+<div id="mobileNav" class="mobile-nav">
+<a href="#pyq" onclick="toggleMenu()">PYQs</a>
+<a href="#reviews" onclick="toggleMenu()">Reviews</a>
+<a href="#about" onclick="toggleMenu()">About</a>
+</div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-flex">
-    <div class="hero-text">
-      <h2>AKTU BTech PYQs</h2>
-      <p>Browse question papers like folders • Free • Mobile-friendly</p>
-    </div>
-    <div class="hero-img">
-      <img src="logo.png" alt="AKTU Logo">
-    </div>
-  </div>
+<div class="hero-flex">
+<div class="hero-text">
+<h2>AKTU BTech PYQs</h2>
+<p>Browse question papers like folders • Free • Mobile-friendly</p>
+</div>
+<div class="hero-img">
+<img src="logo.png" alt="AKTU Logo">
+</div>
+</div>
 </section>
 
-<!-- PYQ -->
 <section id="pyq" class="section">
-  <h3>🗂️ Browse PYQs</h3>
-  <div id="pyqContainer" class="folders"></div>
+<h3>🗂️ Browse PYQs</h3>
+<div id="pyqContainer" class="folders"></div>
 </section>
 
-<!-- REVIEWS -->
 <section id="reviews" class="section">
-  <h3>⭐ Students Reviews</h3>
-  <div class="reviews">
-    <div class="review-card">
-      <h4>Aman Kumar (CSE)</h4>
-      <div class="stars">★★★★★</div>
-      <p>Folder system kaafi intuitive hai. PYQs easily mil gaye.</p>
-    </div>
-    <div class="review-card">
-      <h4>Shivani Singh (EE)</h4>
-      <div class="stars">★★★★★</div>
-      <p>Mobile pe bhi smooth. AKTU students ke liye best site.</p>
-    </div>
-    <div class="review-card">
-      <h4>Rohit Verma (ME)</h4>
-      <div class="stars">★★★★☆</div>
-      <p>Clean UI aur fast downloads. Highly recommended.</p>
-    </div>
-  </div>
+<h3>⭐ Students Reviews</h3>
+<div class="reviews">
+<div class="review-card">
+<h4>Aman Kumar (CSE)</h4>
+<div class="stars">★★★★★</div>
+<p>Folder system kaafi intuitive hai. PYQs easily mil gaye.</p>
+</div>
+<div class="review-card">
+<h4>Shivani Singh (EE)</h4>
+<div class="stars">★★★★★</div>
+<p>Mobile pe bhi smooth. AKTU students ke liye best site.</p>
+</div>
+<div class="review-card">
+<h4>Rohit Verma (ME)</h4>
+<div class="stars">★★★★☆</div>
+<p>Clean UI aur fast downloads. Highly recommended.</p>
+</div>
+</div>
 </section>
 
-<!-- ABOUT -->
 <section id="about" class="section">
-  <h3>About PYQWaleBhaiya</h3>
-  <p class="about">
-    PYQWaleBhaiya ek student-focused platform hai jo AKTU BTech
-    students ko previous year question papers
-    ek clean aur folder-style interface me provide karta hai.
-  </p>
+<h3>About PYQWaleBhaiya</h3>
+<p class="about">
+PYQWaleBhaiya ek student-focused platform hai jo AKTU BTech
+students ko previous year question papers
+ek clean aur folder-style interface me provide karta hai.
+</p>
 </section>
 
 <footer>© 2026 PYQWaleBhaiya • Educational Purpose Only</footer>
 
 <script>
 
+/* ⭐ NAVBAR FIX */
+function toggleMenu(){
+document.getElementById("mobileNav").classList.toggle("show");
+}
+
 /* ===== DATA ===== */
 const pyqData={
- "1st Year":{
-    "Semester 1":[
-      {name:"Engineering Maths-I",file:"pdf/pyq/year1/sem1/maths1.pdf"},
-      {name:"Engineering Physics",file:"pdf/pyq/year1/sem1/physics.pdf"},
-      {name:"Basic Electrical",file:"pdf/pyq/year1/sem1/electrical.pdf"},
-      {name:"Engineering Chemistry",file:"pdf/pyq/year1/sem1/chemistry.pdf"}
-    ],
-    "Semester 2":[
-      {name:"Engineering Maths-II",file:"pdf/pyq/year1/sem2/maths2.pdf"},
-      {name:"Electronic Engineering",file:"pdf/pyq/year1/sem2/electronics.pdf"},
-      {name:"Programming in C",file:"pdf/pyq/year1/sem2/cprog.pdf"},
-      {name:"Environment Science",file:"pdf/pyq/year1/sem2/evs.pdf"}
-    ]
-  },
-  "2nd Year":{
-    "Semester 3":[
-      {name:"Data Structures",file:"pdf/pyq/year2/sem3/ds.pdf"},
-      {name:"Discrete Maths",file:"pdf/pyq/year2/sem3/dm.pdf"},
-      {name:"Digital Logic",file:"pdf/pyq/year2/sem3/dld.pdf"},
-      {name:"OOPs",file:"pdf/pyq/year2/sem3/oops.pdf"}
-    ],
-    "Semester 4":[
-      {name:"Operating System",file:"pdf/pyq/year2/sem4/os.pdf"},
-      {name:"Computer Organization",file:"pdf/pyq/year2/sem4/co.pdf"},
-      {name:"DBMS",file:"pdf/pyq/year2/sem4/dbms.pdf"},
-      {name:"Theory of Automata",file:"pdf/pyq/year2/sem4/toa.pdf"}
-    ]
-  },
-  "3rd Year":{
-    "Semester 5":[
-      {name:"Compiler Design",file:"pdf/pyq/year3/sem5/compiler.pdf"},
-      {name:"Software Engineering",file:"pdf/pyq/year3/sem5/se.pdf"},
-      {name:"Computer Networks",file:"pdf/pyq/year3/sem5/cn.pdf"},
-      {name:"Machine Learning",file:"pdf/pyq/year3/sem5/ml.pdf"}
-    ],
-    "Semester 6":[
-      {name:"Artificial Intelligence",file:"pdf/pyq/year3/sem6/ai.pdf"},
-      {name:"Cloud Computing",file:"pdf/pyq/year3/sem6/cloud.pdf"},
-      {name:"Big Data",file:"pdf/pyq/year3/sem6/bigdata.pdf"},
-      {name:"Cyber Security",file:"pdf/pyq/year3/sem6/cyber.pdf"}
-    ]
-  },
-  "4th Year":{
-    "Semester 7":[
-      {name:"Blockchain",file:"pdf/pyq/year4/sem7/blockchain.pdf"},
-      {name:"IoT",file:"pdf/pyq/year4/sem7/iot.pdf"},
-      {name:"Data Mining",file:"pdf/pyq/year4/sem7/dm.pdf"}
-    ],
-    "Semester 8":[
-      {name:"Project Viva",file:"pdf/pyq/year4/sem8/viva.pdf"},
-      {name:"Internship Report",file:"pdf/pyq/year4/sem8/internship.pdf"}
-    ]
-  }
+ "1st Year":{drive:true,link:"https://drive.google.com/embeddedfolderview?id=1q0ellXaBJlZyJzvR97pvo2vUMwdgWfhj#grid"},
+ "2nd Year":{drive:true,link:"https://drive.google.com/embeddedfolderview?id=1v_B0kDArYF0jw0rvM8c0oFxkafcBZKCU#grid"},
+ "3rd Year":{drive:true,link:"https://drive.google.com/embeddedfolderview?id=1BfEZ6heGwSt0SRL_Fs7Be3wO0XD-REgP#grid"},
+ "4th Year":{drive:true,link:"https://drive.google.com/embeddedfolderview?id=1zNCuG4M1pApTv2nZLu9CYVNxf7vKaEz9#grid"}
 };
 
 const container=document.getElementById("pyqContainer");
 let uid=0;
 
-/* ===== ULTRA SMOOTH TOGGLE ===== */
-function toggle(id,el){
-
+function toggle(id){
 const box=document.getElementById(id);
 const open=box.style.maxHeight && box.style.maxHeight!=="0px";
 
-/* close others (accordion feel) */
-document.querySelectorAll('.subfolders,.files').forEach(e=>{
+document.querySelectorAll('.subfolders').forEach(e=>{
 if(e!==box)e.style.maxHeight="0px";
 });
 
-document.querySelectorAll('.folder').forEach(f=>f.classList.remove('active'));
-
-if(open){
-box.style.maxHeight="0px";
-}else{
-box.style.maxHeight=box.scrollHeight+"px";
-el.classList.add('active');
-
-/* 🔥 AUTO SCROLL */
-setTimeout(()=>{
-el.scrollIntoView({behavior:"smooth",block:"center"});
-},200);
+if(open){box.style.maxHeight="0px";}
+else{box.style.maxHeight=box.scrollHeight+"px";}
 }
 
-/* 🔥 UPDATE PARENTS HEIGHT */
-setTimeout(()=>{
-let parent=box.parentElement;
-while(parent){
-if(parent.classList && parent.classList.contains('subfolders')){
-parent.style.maxHeight=parent.scrollHeight+"px";
-}
-parent=parent.parentElement;
-}
-},350);
-}
-
-/* ===== BUILD UI ===== */
 for(const year in pyqData){
 
 uid++;const yid="y"+uid;
 
 container.innerHTML+=`
-<div class="folder big" onclick="toggle('${yid}',this)">
-<span class="icon">📁</span>${year}
-</div>
+<div class="folder big" onclick="toggle('${yid}')">📁 ${year}</div>
 <div id="${yid}" class="subfolders"></div>`;
 
 const ydiv=document.getElementById(yid);
 
-for(const sem in pyqData[year]){
-
-uid++;const sid="s"+uid;
-
 ydiv.innerHTML+=`
-<div class="folder" onclick="toggle('${sid}',this)">
-<span class="icon">📂</span>${sem}
-</div>
-<div id="${sid}" class="files"></div>`;
-
-const sdiv=document.getElementById(sid);
-
-pyqData[year][sem].forEach(f=>{
-sdiv.innerHTML+=`<a href="${f.file}">📄 ${f.name}</a>`;
-});
-}
+<div style="background:#fff;border-radius:16px;padding:10px;margin-top:12px;box-shadow:0 10px 25px rgba(0,0,0,.08)">
+<iframe src="${pyqData[year].link}"
+style="width:100%;height:600px;border:0;border-radius:12px;"></iframe>
+</div>`;
 }
 
 </script>
