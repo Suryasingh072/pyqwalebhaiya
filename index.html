@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -13,70 +13,48 @@ body{background:#f4f7ff;color:#222;overflow-x:hidden}
 
 /* ===== Animated Background ===== */
 .blobs{position:fixed;inset:0;z-index:-1;overflow:hidden}
-.blob{position:absolute;width:420px;height:420px;border-radius:50%;
+.blob{
+position:absolute;width:420px;height:420px;border-radius:50%;
 background:radial-gradient(circle at 30% 30%, #64b5f6, #1e88e5);
 filter:blur(45px);opacity:.45;animation:float 18s infinite linear}
 .blob.b1{top:-80px;left:-80px}
 .blob.b2{bottom:-120px;right:-120px;animation-duration:22s}
 .blob.b3{top:40%;left:60%;width:300px;height:300px;animation-duration:20s}
-@keyframes float{0%{transform:translate(0,0)}50%{transform:translate(40px,-30px)}100%{transform:translate(0,0)}}
+@keyframes float{
+0%{transform:translate(0,0)}
+50%{transform:translate(40px,-30px)}
+100%{transform:translate(0,0)}
+}
 
 /* ===== Header ===== */
 header{
 background:linear-gradient(135deg,#0b3c91,#1e88e5);
 color:#fff;padding:14px 22px;
-position:sticky;
-top:0;
-z-index:100;
-position:relative;   /* ⭐ FIX */
+position:sticky;top:0;z-index:100;
+position:relative;
 display:flex;justify-content:space-between;align-items:center}
-header h1{font-size:22px;font-weight:700}
-
 nav{display:flex;gap:12px}
 nav a{
 color:#fff;text-decoration:none;font-size:15px;font-weight:500;
 padding:8px 16px;border-radius:999px;
 background:rgba(255,255,255,.15);transition:.25s}
 nav a:hover{background:rgba(255,255,255,.28)}
-
 .hamburger{display:none;font-size:26px;cursor:pointer}
 
-/* ⭐ FIXED MOBILE NAV */
+/* ===== Mobile Menu ===== */
 .mobile-nav{
-display:none;
-flex-direction:column;
+display:none;flex-direction:column;
 background:linear-gradient(135deg,#0b3c91,#1e88e5);
-position:absolute;
-top:60px;
-right:10px;
-width:200px;
-border-radius:16px;
-overflow:hidden;
-z-index:999;
-box-shadow:0 15px 40px rgba(0,0,0,.25)
-}
-
-.mobile-nav.show{
-display:flex;
-animation:slideDown .3s ease;
-}
-
-@keyframes slideDown{
-from{opacity:0;transform:translateY(-10px)}
-to{opacity:1;transform:translateY(0)}
-}
-
-.mobile-nav a{
-padding:14px 22px;color:#fff;text-decoration:none;
-border-bottom:1px solid rgba(255,255,255,.15)}
-.mobile-nav a:last-child{border-bottom:none}
+position:absolute;top:60px;right:10px;width:200px;
+border-radius:16px;z-index:999;
+box-shadow:0 15px 40px rgba(0,0,0,.25)}
+.mobile-nav.show{display:flex}
+.mobile-nav a{padding:14px 22px;color:#fff;text-decoration:none}
 
 /* ===== HERO ===== */
 .hero{padding:100px 20px;background:linear-gradient(135deg,#0b3c91,#1e88e5);color:#fff}
 .hero-flex{max-width:1150px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:40px}
-.hero-text h2{font-size:38px;font-weight:700;margin-bottom:14px}
-.hero-text p{font-size:16px;opacity:.95;max-width:520px}
-.hero-img img{width:300px;max-width:60vw;filter:drop-shadow(0 20px 40px rgba(0,0,0,.45));}
+.hero-img img{width:300px;max-width:60vw}
 
 /* ===== Sections ===== */
 .section{padding:60px 20px;max-width:1050px;margin:auto}
@@ -85,10 +63,9 @@ border-bottom:1px solid rgba(255,255,255,.15)}
 /* ===== Folder UI ===== */
 .folders{max-width:900px;margin:auto}
 .folder{
-background:#fff;padding:20px 24px;margin:14px 0;
-border-radius:16px;font-size:16px;cursor:pointer;
-box-shadow:0 12px 30px rgba(0,0,0,.08);
-transition:.25s;user-select:none}
+background:#fff;padding:20px;margin:14px 0;border-radius:16px;
+cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,.08);
+transition:.25s}
 .folder:hover{transform:translateY(-4px)}
 .folder.big{
 font-size:20px;font-weight:600;color:#fff;
@@ -99,22 +76,45 @@ background:linear-gradient(135deg,#0b3c91,#1e88e5)}
 .reviews{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px}
+gap:25px
+}
 .review-card{
-background:#fff;padding:26px;border-radius:18px;
+background:#fff;
+padding:26px;
+border-radius:18px;
 box-shadow:0 12px 30px rgba(0,0,0,.08);
-transition:.25s}
-.review-card:hover{transform:translateY(-6px)}
+transition:.25s
+}
+.review-card:hover{
+transform:translateY(-6px);
+box-shadow:0 18px 40px rgba(0,0,0,.15)
+}
 .review-card h4{font-size:16px;color:#0b3c91;margin-bottom:6px}
 .stars{color:#ffb400;font-size:15px;margin-bottom:10px}
 .review-card p{font-size:14px;color:#555;line-height:1.6}
+
+/* ⭐ NEW BUTTON STYLE */
+.review-btn{
+display:inline-block;
+padding:12px 24px;
+background:linear-gradient(135deg,#0b3c91,#1e88e5);
+color:#fff;
+border-radius:999px;
+text-decoration:none;
+font-weight:500;
+transition:.3s;
+box-shadow:0 10px 20px rgba(0,0,0,.15);
+}
+.review-btn:hover{
+transform:translateY(-3px);
+box-shadow:0 15px 30px rgba(0,0,0,.25);
+}
 
 /* ===== About & Footer ===== */
 .about{text-align:center;max-width:760px;margin:auto;font-size:15px;line-height:1.8;color:#444}
 footer{
 background:linear-gradient(135deg,#0b3c91,#1e88e5);
-color:#fff;text-align:center;padding:20px;
-font-size:13px;margin-top:60px}
+color:#fff;text-align:center;padding:20px;margin-top:60px}
 
 /* ===== Mobile ===== */
 @media(max-width:768px){
@@ -122,7 +122,6 @@ nav{display:none}
 .hamburger{display:block}
 .hero-flex{flex-direction:column-reverse;text-align:center}
 .hero-img img{width:220px;margin-bottom:25px}
-.hero-text h2{font-size:26px}
 }
 </style>
 </head>
@@ -155,12 +154,12 @@ nav{display:none}
 
 <section class="hero">
 <div class="hero-flex">
-<div class="hero-text">
+<div>
 <h2>AKTU BTech PYQs</h2>
 <p>Browse question papers like folders • Free • Mobile-friendly</p>
 </div>
 <div class="hero-img">
-<img src="logo.png" alt="AKTU Logo">
+<img src="logo.png">
 </div>
 </div>
 </section>
@@ -170,6 +169,7 @@ nav{display:none}
 <div id="pyqContainer" class="folders"></div>
 </section>
 
+<!-- ⭐ REVIEWS -->
 <section id="reviews" class="section">
 <h3>⭐ Students Reviews</h3>
 <div class="reviews">
@@ -189,14 +189,19 @@ nav{display:none}
 <p>Clean UI aur fast downloads. Highly recommended.</p>
 </div>
 </div>
+
+<!-- ⭐ BUTTON ADDED -->
+<div style="text-align:center;margin-top:30px;">
+<a href="#" class="review-btn">⭐Review here⭐</a>
+</div>
+
 </section>
 
 <section id="about" class="section">
 <h3>About PYQWaleBhaiya</h3>
 <p class="about">
-PYQWaleBhaiya ek student-focused platform hai jo AKTU BTech
-students ko previous year question papers
-ek clean aur folder-style interface me provide karta hai.
+PYQWaleBhaiya ek student-focused platform hai jo AKTU BTech students ko
+previous year question papers ek clean folder-style interface me provide karta hai.
 </p>
 </section>
 
@@ -204,17 +209,15 @@ ek clean aur folder-style interface me provide karta hai.
 
 <script>
 
-/* ⭐ NAVBAR FIX */
 function toggleMenu(){
 document.getElementById("mobileNav").classList.toggle("show");
 }
 
-/* ===== DATA ===== */
 const pyqData={
- "1st Year":{drive:true,link:"https://drive.google.com/embeddedfolderview?id=1q0ellXaBJlZyJzvR97pvo2vUMwdgWfhj#grid"},
- "2nd Year":{drive:true,link:"https://drive.google.com/embeddedfolderview?id=1v_B0kDArYF0jw0rvM8c0oFxkafcBZKCU#grid"},
- "3rd Year":{drive:true,link:"https://drive.google.com/embeddedfolderview?id=1BfEZ6heGwSt0SRL_Fs7Be3wO0XD-REgP#grid"},
- "4th Year":{drive:true,link:"https://drive.google.com/embeddedfolderview?id=1zNCuG4M1pApTv2nZLu9CYVNxf7vKaEz9#grid"}
+ "1st Year":{link:"https://drive.google.com/embeddedfolderview?id=1q0ellXaBJlZyJzvR97pvo2vUMwdgWfhj#grid"},
+ "2nd Year":{link:"https://drive.google.com/embeddedfolderview?id=1v_B0kDArYF0jw0rvM8c0oFxkafcBZKCU#grid"},
+ "3rd Year":{link:"https://drive.google.com/embeddedfolderview?id=1BfEZ6heGwSt0SRL_Fs7Be3wO0XD-REgP#grid"},
+ "4th Year":{link:"https://drive.google.com/embeddedfolderview?id=1zNCuG4M1pApTv2nZLu9CYVNxf7vKaEz9#grid"}
 };
 
 const container=document.getElementById("pyqContainer");
@@ -242,11 +245,26 @@ container.innerHTML+=`
 
 const ydiv=document.getElementById(yid);
 
+const isMobile = window.innerWidth < 768;
+
+if(isMobile){
+ydiv.innerHTML+=`
+<div style="background:#fff;border-radius:16px;padding:20px;margin-top:12px;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,.08)">
+<p style="margin-bottom:12px;font-weight:500">📂 Open Drive Folder</p>
+<a href="${pyqData[year].link.replace('embeddedfolderview','drive/folders')}"
+target="_blank"
+style="display:inline-block;padding:10px 18px;background:#1e88e5;color:#fff;border-radius:8px;text-decoration:none">
+Open in Google Drive
+</a>
+</div>`;
+}else{
 ydiv.innerHTML+=`
 <div style="background:#fff;border-radius:16px;padding:10px;margin-top:12px;box-shadow:0 10px 25px rgba(0,0,0,.08)">
 <iframe src="${pyqData[year].link}"
 style="width:100%;height:600px;border:0;border-radius:12px;"></iframe>
 </div>`;
+}
+
 }
 
 </script>
